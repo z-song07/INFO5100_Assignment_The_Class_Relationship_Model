@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author csong
@@ -12,6 +14,15 @@ public class Owner {
     private String ownerID;
     private String ownerFirstName;
     private String ownerLastName;
+    private LocalDate serviceDate;
+
+    public LocalDate getServiceDate() {
+        return serviceDate;
+    }
+
+    public void setServiceDate(LocalDate serviceDate) {
+        this.serviceDate = serviceDate;
+    }
     
     public Owner() {
         this.ownerID = OwnerIdGenerator.getNextUniqueID();

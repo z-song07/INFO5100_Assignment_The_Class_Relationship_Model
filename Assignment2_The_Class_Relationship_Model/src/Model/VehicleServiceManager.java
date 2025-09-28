@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author csong
@@ -25,41 +27,49 @@ public class VehicleServiceManager {
         Service s1 = serviceCatalog.addService();
         s1.setServiceType("Oil Change");
         s1.setCost(60);
-        s1.setMechanicName("Bob Smith");
+        s1.setMechanicFirstName("Bob");
+        s1.setMechanicLastName("Smith");
         s1.setServiceDuration(2);
         
         Service s2 = serviceCatalog.addService();
         s2.setServiceType("Car Wash");
         s2.setCost(20);
-        s2.setMechanicName("Amy Doe");
+        s2.setMechanicFirstName("Amy");
+        s2.setMechanicLastName("Doe");
         s2.setServiceDuration(1);
         
         Service s3 = serviceCatalog.addService();
         s3.setServiceType("Puncture");
         s3.setCost(60);
-        s3.setMechanicName("Jack Kim");
+        s3.setMechanicFirstName("Jack");
+        s3.setMechanicLastName("Kim");
         s3.setServiceDuration(2);
         
         //populate Owners
         Owner owner1 = new Owner();
         owner1.setOwnerFirstName("Alex");
         owner1.setOwnerLastName("Lee");
+        owner1.setServiceDate(LocalDate.of(2025, 9, 19));
         
         Owner owner2 = new Owner();
         owner2.setOwnerFirstName("Samantha");
         owner2.setOwnerLastName("Davis");
+        owner2.setServiceDate(LocalDate.of(2025, 8, 30));
         
         Owner owner3 = new Owner();
         owner3.setOwnerFirstName("David");
         owner3.setOwnerLastName("Johnson");
+        owner3.setServiceDate(LocalDate.of(2025, 9, 25));
         
         Owner owner4 = new Owner();
         owner4.setOwnerFirstName("Bob");
         owner4.setOwnerLastName("Garcia");
+        owner4.setServiceDate(LocalDate.of(2025, 9, 15));
         
         Owner owner5 = new Owner();
         owner5.setOwnerFirstName("Emily");
         owner5.setOwnerLastName("Brown");
+        owner5.setServiceDate(LocalDate.of(2025, 9, 23));
         
         //populate Vehicles
         Vehicle v1= vehicleDirectory.addVehicle();

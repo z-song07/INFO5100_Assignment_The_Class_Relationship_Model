@@ -18,13 +18,13 @@ public class ServiceCatalog {
         this.services = new ArrayList<Service>();
     }
 
-    public ArrayList getServices() {
+    public ArrayList<Service> getServices() {
         return services;
     }
 
-    public void setServices(ArrayList services) {
-        this.services = services;
-    }
+//    public void setServices(ArrayList services) {
+//        this.services = services;
+//    }
     
     public Service addService() {
         Service s = new Service();
@@ -34,5 +34,15 @@ public class ServiceCatalog {
     
     public void removeService(Service serv) {
         services.remove(serv);
+    }
+    
+    public Service findService(String serviceType) {
+        for (Service s: services) {
+            // match the serviceType
+            if (s.getServiceType().equals(serviceType)){
+                return s;//return matched service
+            }
+        }
+        return null;//return null of no match service
     }
 }

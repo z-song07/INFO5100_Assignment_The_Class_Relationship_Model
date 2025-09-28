@@ -12,7 +12,8 @@ public class Service {
     private String serviceID;
     private String serviceType;
     private double cost;
-    private String mechanicName;
+    private String mechanicFirstName;
+    private String mechanicLastName;
     private int serviceDuration;
     
     public Service() {
@@ -43,12 +44,20 @@ public class Service {
         this.cost = cost;
     }
 
-    public String getMechanicName() {
-        return mechanicName;
+    public String getMechanicFirstName() {
+        return mechanicFirstName;
     }
 
-    public void setMechanicName(String mechanicName) {
-        this.mechanicName = mechanicName;
+    public void setMechanicFirstName(String mechanicFirstName) {
+        this.mechanicFirstName = mechanicFirstName;
+    }
+    
+    public String getMechanicLastName() {
+        return mechanicLastName;
+    }
+
+    public void setMechanicLastName(String mechanicLastName) {
+        this.mechanicLastName = mechanicLastName;
     }
 
     public int getServiceDuration() {

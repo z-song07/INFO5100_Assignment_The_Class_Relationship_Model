@@ -4,6 +4,10 @@
  */
 package UI;
 
+import Model.VehicleServiceManager;
+import UI.ServiceManager.ManageVehiclesJPanel;
+import UI.ServiceManager.ServicesJPanel;
+import UI.ServiceManager.VehicleOwnerJPanel;
 import java.awt.CardLayout;
 
 /**
@@ -14,11 +18,13 @@ public class MainJFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainJFrame.class.getName());
 
+    private VehicleServiceManager vsManager;
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        this.vsManager = new VehicleServiceManager();
         
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.show(userProcessContainer, "welcomePanel");
@@ -59,6 +65,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         btnVehicleAndOwner.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnVehicleAndOwner.setText("Vehicle & Owner");
+        btnVehicleAndOwner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVehicleAndOwnerActionPerformed(evt);
+            }
+        });
 
         btnManageVehicles.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnManageVehicles.setText("Manage Vehicles");
@@ -77,7 +88,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnServices, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(170, 170, 170)
                 .addComponent(btnVehicleAndOwner)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addGap(165, 165, 165)
                 .addComponent(btnManageVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
@@ -130,12 +141,28 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageVehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageVehiclesActionPerformed
-        // TODO add your handling code here:
+        ManageVehiclesJPanel panel = new ManageVehiclesJPanel(userProcessContainer, vsManager);
+        userProcessContainer.add("ManageVehiclesJPanel", panel);
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageVehiclesActionPerformed
 
     private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
-        // TODO add your handling code here:
+        ServicesJPanel panel = new ServicesJPanel(userProcessContainer, vsManager);
+        userProcessContainer.add("ServicesJPanel", panel);
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnServicesActionPerformed
+
+    private void btnVehicleAndOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehicleAndOwnerActionPerformed
+        VehicleOwnerJPanel panel = new VehicleOwnerJPanel(userProcessContainer, vsManager);
+        userProcessContainer.add("VehicleOwnerJPanel", panel);
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnVehicleAndOwnerActionPerformed
 
     /**
      * @param args the command line arguments
