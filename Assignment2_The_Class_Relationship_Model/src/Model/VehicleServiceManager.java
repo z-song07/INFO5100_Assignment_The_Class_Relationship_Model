@@ -110,7 +110,4 @@ public class VehicleServiceManager {
     public ServiceCatalog getServiceCatalog() {
         return serviceCatalog;
     }
-    
-    
-    
 }
