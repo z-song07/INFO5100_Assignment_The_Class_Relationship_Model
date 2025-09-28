@@ -14,15 +14,29 @@ public class Vehicle {
     private String model;
     private int year;
     private String registrationNumber;
+    private Owner owner;
     private Service serviceOpted;
+    
+    public Vehicle() {
+        this.vehicleID = VehicleIdGenerator.getNextUniqueId();
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+    
     
     public String getVehicleID() {
         return vehicleID;
     }
 
-    public void setVehicleID(String vehicleID) {
-        this.vehicleID = vehicleID;
-    }
+//    public void setVehicleID(String vehicleID) {
+//        this.vehicleID = vehicleID;
+//    }
 
     public String getMake() {
         return make;

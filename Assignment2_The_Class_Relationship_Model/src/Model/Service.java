@@ -14,14 +14,18 @@ public class Service {
     private double cost;
     private String mechanicName;
     private int serviceDuration;
+    
+    public Service() {
+        this.serviceID = ServiceIdGenerator.getNextUniqueId();
+    }
 
     public String getServiceID() {
         return serviceID;
     }
 
-    public void setServiceID(String serviceID) {
-        this.serviceID = serviceID;
-    }
+//    public void setServiceID(String serviceID) {
+//        this.serviceID = serviceID;
+//    }
 
     public String getServiceType() {
         return serviceType;

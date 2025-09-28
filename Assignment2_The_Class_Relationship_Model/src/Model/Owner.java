@@ -13,13 +13,17 @@ public class Owner {
     private String ownerFirstName;
     private String ownerLastName;
     
+    public Owner() {
+        this.ownerID = OwnerIdGenerator.getNextUniqueID();
+    }
+    
     public String getOwnerID() {
         return ownerID;
     }
 
-    public void setOwnerID(String ownerID) {
-        this.ownerID = ownerID;
-    }
+//    public void setOwnerID(String ownerID) {
+//        this.ownerID = OwnerIdGenerator.getNextUniqueID();
+//    }
 
     public String getOwnerFirstName() {
         return ownerFirstName;

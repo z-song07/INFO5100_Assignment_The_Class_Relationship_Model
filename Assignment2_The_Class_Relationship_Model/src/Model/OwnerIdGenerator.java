@@ -8,6 +8,12 @@ package Model;
  *
  * @author csong
  */
-public class OwnerDirectory {
+public class OwnerIdGenerator {
+    private static int counter = 0;
+    
+    public static String getNextUniqueID() {
+        counter++;
+        return "O" + String.format("%03d", counter);
+    }
     
 }
