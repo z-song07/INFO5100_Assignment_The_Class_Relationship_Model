@@ -53,7 +53,7 @@
                       <Component id="btnRegisterService" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                       <Component id="VehicleDetailsJPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -86,7 +86,7 @@
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Component id="VehicleDetailsJPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="btnRegisterService" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
@@ -148,11 +148,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblModel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblRegistrationNumber" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblYear" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblMake" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblServiceOpted" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMake" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblModel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblYear" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblServiceOpted" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -230,6 +230,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVehicleDetails">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Vehicle Details"/>
           </Properties>
         </Component>

@@ -50,7 +50,7 @@ public class VehicleDirectory {
         } else {
         // check if search by Vehicle Name/Model
             for (Vehicle v: vehicles) {
-                if(v.getModel().equalsIgnoreCase(queryStr)){
+                if(v.getModel().equalsIgnoreCase(queryStr) || v.getMake().equalsIgnoreCase(queryStr)){
                     results.add(v);
                 }
             }

@@ -99,6 +99,7 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
 
         lblYear.setText("Year:");
 
+        lblVehicleDetails.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblVehicleDetails.setText("Vehicle Details");
 
         comboServiceOpted.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -119,11 +120,11 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
                     .addGroup(VehicleDetailsJPanelLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addGroup(VehicleDetailsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblModel)
                             .addComponent(lblRegistrationNumber)
-                            .addComponent(lblYear)
-                            .addComponent(lblMake)
-                            .addComponent(lblServiceOpted))
+                            .addComponent(lblMake, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblModel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblYear, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblServiceOpted, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(31, 31, 31)
                         .addGroup(VehicleDetailsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(fieldRegistrationNumber)
@@ -200,7 +201,7 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
                         .addGap(382, 382, 382)
                         .addComponent(btnRegisterService))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
+                        .addGap(150, 150, 150)
                         .addComponent(VehicleDetailsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(335, Short.MAX_VALUE))
         );
@@ -225,7 +226,7 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
                     .addComponent(fieldServiceDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(VehicleDetailsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addComponent(btnRegisterService)
                 .addGap(26, 26, 26))
         );
