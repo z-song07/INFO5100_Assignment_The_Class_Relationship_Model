@@ -21,15 +21,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                       <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
                       <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="266" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lblOwnerLName" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -39,7 +39,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="fieldOwnerFName" alignment="0" pref="184" max="32767" attributes="0"/>
-                          <Component id="fieldOwnerLName" max="32767" attributes="0"/>
+                          <Component id="fieldOwnerLName" alignment="0" max="32767" attributes="0"/>
                           <Component id="fieldServiceDate" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -48,16 +48,18 @@
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="382" max="-2" attributes="0"/>
-                      <Component id="btnRegisterService" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                       <Component id="VehicleDetailsJPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
+                      <Component id="btnSave" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                      <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="335" max="32767" attributes="0"/>
+              <EmptySpace pref="177" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -86,30 +88,23 @@
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Component id="VehicleDetailsJPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
-              <Component id="btnRegisterService" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblOwnerLName">
+    <Component class="javax.swing.JButton" name="btnSave">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Owner Last Name:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblServiceDate">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Service Date:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnRegisterService">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Register Service"/>
+        <Property name="text" type="java.lang.String" value="Save"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegisterServiceActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBack">
@@ -143,7 +138,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
@@ -152,14 +147,14 @@
                               <Component id="lblRegistrationNumber" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblYear" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblMake" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblServiceOpted" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblServiceOpted" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="fieldRegistrationNumber" alignment="0" max="32767" attributes="0"/>
                               <Component id="fieldModel" alignment="0" max="32767" attributes="0"/>
                               <Component id="fieldMake" alignment="0" max="32767" attributes="0"/>
-                              <Component id="comboServiceOpted" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboServiceOpted" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="fieldYear" alignment="0" pref="213" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -230,6 +225,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVehicleDetails">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Vehicle Details"/>
           </Properties>
         </Component>
@@ -278,6 +276,24 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldServiceDateActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblOwnerLName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Owner Last Name:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblServiceDate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Service Date:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnUpdate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Update"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

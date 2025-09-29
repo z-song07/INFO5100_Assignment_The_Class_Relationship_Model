@@ -4,17 +4,21 @@
  */
 package UI.ServiceManager;
 
+import Model.Vehicle;
 import Model.VehicleServiceManager;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author csong
  */
 public class ManageVehiclesJPanel extends javax.swing.JPanel {
-    JPanel userProcessContainer;
-    VehicleServiceManager vsManager;
+    private JPanel userProcessContainer;
+    private VehicleServiceManager vsManager;
     /**
      * Creates new form ManageVehiclesJPanel
      */
@@ -22,6 +26,8 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = container;
         this.vsManager = dataManager;
+        
+        populateTable();
     }
 
     /**
@@ -55,6 +61,11 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         lblTitle.setText("Manage Vehicles");
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         tblVehicles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,8 +81,18 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblVehicles);
 
         btnViewDetails.setText("View Details");
+        btnViewDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewDetailsActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete Account");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -127,6 +148,67 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String searchText = fieldSearch.getText();
+        
+        // Check valid search
+        if (searchText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a vehicle ID or a vehicle Model (vehicle name).", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+        }
+        
+        ArrayList<Vehicle> queryResults = vsManager.getVehicleDirectory().searchVehicles(searchText);
+        
+        // Populate Query Table by search result
+        DefaultTableModel model = (DefaultTableModel) tblVehicles.getModel();
+        model.setRowCount(0);
+        
+        if (queryResults.isEmpty()){
+            JOptionPane.showMessageDialog(this, "No matched vehicles in record.", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            for (Vehicle v: queryResults) {
+                Object[] row = new Object[4];
+                row[0] = v.getOwner().getOwnerID();
+                row[1] = v;
+                row[2] = v.getServiceOpted().getServiceType();
+                row[3] = v.getServiceOpted().getCost();
+                model.addRow(row);
+            }
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblVehicles.getSelectedRow();
+        
+        if(selectedRow >= 0){
+            Vehicle selectedVehicle = (Vehicle) tblVehicles.getValueAt(selectedRow, 1);
+            
+            ViewVehicleDetailsJPanel panel = new ViewVehicleDetailsJPanel(userProcessContainer, vsManager, selectedVehicle);
+            userProcessContainer.add("ViewVehicleDetailsJPanel", panel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a vehicle from the list to view", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnViewDetailsActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int selectedRow = tblVehicles.getSelectedRow();
+        
+        if(selectedRow >= 0){
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected account/vehicle?", "Warning", JOptionPane.WARNING_MESSAGE);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                Vehicle selectedVehicle = (Vehicle) tblVehicles.getValueAt(selectedRow, 1);
+                vsManager.getVehicleDirectory().removeVehicle(selectedVehicle);
+                populateTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select an account/vehicle from the list to delete", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -138,4 +220,19 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblVehicles;
     // End of variables declaration//GEN-END:variables
+
+    public void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblVehicles.getModel();
+        model.setRowCount(0);
+        
+        ArrayList<Vehicle> vehicleList = vsManager.getVehicleDirectory().getVehicles();
+        for (Vehicle v: vehicleList) {
+                Object[] row = new Object[4];
+                row[0] = v.getOwner().getOwnerID();
+                row[1] = v;
+                row[2] = v.getServiceOpted().getServiceType();
+                row[3] = v.getServiceOpted().getCost();
+                model.addRow(row);
+            }
+    }
 }

@@ -10,7 +10,9 @@ import Model.ServiceCatalog;
 import Model.Vehicle;
 import Model.VehicleServiceManager;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -18,19 +20,24 @@ import javax.swing.JPanel;
  *
  * @author csong
  */
-public class VehicleOwnerJPanel extends javax.swing.JPanel {
+public class ViewVehicleDetailsJPanel extends javax.swing.JPanel {
 
-    JPanel userProcessContainer;
-    VehicleServiceManager vsManager;
+    private JPanel userProcessContainer;
+    private VehicleServiceManager vsManager;
+    private Vehicle vehicle;
     /**
-     * Creates new form VehicleOwnerJPanel
+     * Creates new form ViewVehicleDetails
      */
-    public VehicleOwnerJPanel(JPanel container, VehicleServiceManager dataManager) {
+    public ViewVehicleDetailsJPanel(JPanel container, VehicleServiceManager dataManager, Vehicle selectedVehicle) {
         initComponents();
         
         this.userProcessContainer = container;
         this.vsManager = dataManager;
+        this.vehicle = selectedVehicle;
+        
         populateServiceOpted();
+        refreshTextfields();
+        setViewMode();
     }
 
     /**
@@ -42,9 +49,7 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblOwnerLName = new javax.swing.JLabel();
-        lblServiceDate = new javax.swing.JLabel();
-        btnRegisterService = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         lblOwnerFName = new javax.swing.JLabel();
@@ -63,17 +68,16 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
         fieldOwnerFName = new javax.swing.JTextField();
         fieldOwnerLName = new javax.swing.JTextField();
         fieldServiceDate = new javax.swing.JFormattedTextField();
+        lblOwnerLName = new javax.swing.JLabel();
+        lblServiceDate = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 204));
 
-        lblOwnerLName.setText("Owner Last Name:");
-
-        lblServiceDate.setText("Service Date:");
-
-        btnRegisterService.setText("Register Service");
-        btnRegisterService.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterServiceActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -99,6 +103,7 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
 
         lblYear.setText("Year:");
 
+        lblVehicleDetails.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblVehicleDetails.setText("Vehicle Details");
 
         comboServiceOpted.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -171,6 +176,17 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblOwnerLName.setText("Owner Last Name:");
+
+        lblServiceDate.setText("Service Date:");
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,12 +213,14 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(382, 382, 382)
-                        .addComponent(btnRegisterService))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(104, 104, 104)
-                        .addComponent(VehicleDetailsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(335, Short.MAX_VALUE))
+                        .addComponent(VehicleDetailsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(263, 263, 263)
+                        .addComponent(btnSave)
+                        .addGap(167, 167, 167)
+                        .addComponent(btnUpdate)))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,9 +243,11 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
                     .addComponent(fieldServiceDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(VehicleDetailsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(btnRegisterService)
-                .addGap(26, 26, 26))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
+                    .addComponent(btnUpdate))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -241,41 +261,27 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
             comboServiceOpted.addItem(s.getServiceType());
         }
     }
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
-    private void comboServiceOptedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboServiceOptedActionPerformed
-
-    }//GEN-LAST:event_comboServiceOptedActionPerformed
-
-    private void fieldServiceDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldServiceDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fieldServiceDateActionPerformed
-
-    private void btnRegisterServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterServiceActionPerformed
+    
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // Get data from Owner fields
         String ownerFirstName = fieldOwnerFName.getText();
         String ownerLastName = fieldOwnerLName.getText();
         String serviceDateStr = fieldServiceDate.getText();
         LocalDate serviceDate;
-        
+
         // Get data from Vehicle fields
         int year;
         String make = fieldMake.getText();
         String model = fieldModel.getText();
         String registrationNumber = fieldRegistrationNumber.getText();
         String selectedServiceType = (String) comboServiceOpted.getSelectedItem();
-        
+
         // Check fields
         if (ownerFirstName.isEmpty() || ownerLastName.isEmpty() || serviceDateStr.isEmpty() || make.isEmpty() || model.isEmpty() || registrationNumber.isEmpty() || selectedServiceType == null) {
             JOptionPane.showMessageDialog(this, "All fields are mandatory.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         // validate year
         try {
             year = Integer.parseInt(fieldYear.getText());
@@ -287,7 +293,7 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Year must be an integer", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         // validate service data
         try {
             serviceDate = LocalDate.parse(serviceDateStr);
@@ -295,47 +301,109 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter valid date YYYY-MM-DD.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         // Create the objects
         Service selectedService = vsManager.getServiceCatalog().findService(selectedServiceType);
         if (selectedService == null) {
             JOptionPane.showMessageDialog(this, "The Service type does not exist", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        Owner newOwner = new Owner();
-        newOwner.setOwnerFirstName(ownerFirstName);
-        newOwner.setOwnerLastName(ownerLastName);
-        newOwner.setServiceDate(serviceDate);
-        
-        Vehicle newVehicle = vsManager.getVehicleDirectory().addVehicle();
-        newVehicle.setMake(make);
-        newVehicle.setModel(model);
-        newVehicle.setYear(year);
-        newVehicle.setRegistrationNumber(registrationNumber);
-        newVehicle.setOwner(newOwner);
-        newVehicle.setServiceOpted(selectedService);
-        
-        // dialog
-        JOptionPane.showMessageDialog(this, "Vehicle successfully registered.", "Information", JOptionPane.INFORMATION_MESSAGE);
 
+        // Update the existing Owner
+        vehicle.getOwner().setOwnerFirstName(ownerFirstName);
+        vehicle.getOwner().setOwnerLastName(ownerLastName);
+        vehicle.getOwner().setServiceDate(serviceDate);
         
-        //Clear fields
-        fieldOwnerFName.setText("");
-        fieldOwnerLName.setText("");
-        fieldServiceDate.setText("");
-        fieldYear.setText("");
-        fieldMake.setText("");
-        fieldModel.setText("");
-        fieldRegistrationNumber.setText("");
-        comboServiceOpted.setSelectedIndex(0);
-    }//GEN-LAST:event_btnRegisterServiceActionPerformed
+        // Update existing vehicle
+        vehicle.setMake(make);
+        vehicle.setModel(model);
+        vehicle.setYear(year);
+        vehicle.setRegistrationNumber(registrationNumber);
+        vehicle.setServiceOpted(selectedService);
+        
+        JOptionPane.showMessageDialog(null, "Vehicle successfully updated", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+        setViewMode();
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        userProcessContainer.remove(this);
+        
+        // This will reach to the previous panel and trigger an update
+        Component[] panelStack = userProcessContainer.getComponents();
+        JPanel lastPanel = (JPanel) panelStack[panelStack.length - 1];
+        ManageVehiclesJPanel manageVehiclesJPanel = (ManageVehiclesJPanel) lastPanel;
+        manageVehiclesJPanel.populateTable();
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void refreshTextfields() {        
+        fieldOwnerFName.setText(vehicle.getOwner().getOwnerFirstName());
+        fieldOwnerLName.setText(vehicle.getOwner().getOwnerLastName());
+        fieldYear.setText(String.valueOf(vehicle.getYear()));
+        fieldMake.setText(vehicle.getMake());
+        fieldModel.setText(vehicle.getModel());
+        fieldRegistrationNumber.setText(vehicle.getRegistrationNumber());
+        comboServiceOpted.setSelectedItem(vehicle.getServiceOpted().getServiceType());
+        
+        // Handle Date format
+        // Get the service date
+        LocalDate serviceDate = vehicle.getOwner().getServiceDate();
+        
+        // Format the LocalDate to a String and set the text field
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = serviceDate.format(formatter);
+        fieldServiceDate.setText(formattedDate);
+    }
+    
+    private void setViewMode() {
+        fieldOwnerFName.setEnabled(false);
+        fieldOwnerLName.setEnabled(false);
+        fieldServiceDate.setEnabled(false);
+        fieldYear.setEnabled(false);
+        fieldMake.setEnabled(false);
+        fieldModel.setEnabled(false);
+        fieldRegistrationNumber.setEnabled(false);
+        comboServiceOpted.setEnabled(false);
+        
+        btnSave.setEnabled(false);
+        btnUpdate.setEnabled(true);
+    }
+    
+    private void setEditMode() {
+        fieldOwnerFName.setEnabled(true);
+        fieldOwnerLName.setEnabled(true);
+        fieldServiceDate.setEnabled(true);
+        fieldYear.setEnabled(true);
+        fieldMake.setEnabled(true);
+        fieldModel.setEnabled(true);
+        fieldRegistrationNumber.setEnabled(true);
+        comboServiceOpted.setEnabled(true);
+        
+        btnSave.setEnabled(true);
+        btnUpdate.setEnabled(false);
+    }
+    
+    private void comboServiceOptedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboServiceOptedActionPerformed
+
+    }//GEN-LAST:event_comboServiceOptedActionPerformed
+
+    private void fieldServiceDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldServiceDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldServiceDateActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        setEditMode();
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel VehicleDetailsJPanel;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnRegisterService;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> comboServiceOpted;
     private javax.swing.JTextField fieldMake;
     private javax.swing.JTextField fieldModel;
@@ -355,5 +423,4 @@ public class VehicleOwnerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblVehicleDetails;
     private javax.swing.JLabel lblYear;
     // End of variables declaration//GEN-END:variables
-
 }
