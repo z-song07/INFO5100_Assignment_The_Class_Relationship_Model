@@ -129,7 +129,7 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(lblTitle))
@@ -145,7 +145,7 @@ public class ManageVehiclesJPanel extends javax.swing.JPanel {
                 .addComponent(btnViewDetails)
                 .addGap(18, 18, 18)
                 .addComponent(btnDelete)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

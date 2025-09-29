@@ -109,7 +109,7 @@ public class MainJFrame extends javax.swing.JFrame {
         userProcessContainer.setBackground(new java.awt.Color(255, 255, 204));
         userProcessContainer.setLayout(new java.awt.CardLayout());
 
-        welcomePanel.setBackground(new java.awt.Color(255, 255, 204));
+        welcomePanel.setBackground(new java.awt.Color(153, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -129,7 +129,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGap(164, 164, 164)
                 .addComponent(jLabel1)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
 
         userProcessContainer.add(welcomePanel, "card2");
